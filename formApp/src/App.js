@@ -2,21 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-
-  // function changeFirstNameHandler (event){
-  //   console.log("first Name")
-  //   console.log(event.target.value)
-  //   setFirstName(event.target.value);
-  // }
-
-  // function changeLastNameHandler(event){
-  //   console.log("Last Name")
-  //   console.log(event.target.value)
-  //   setLastName(event.target.value);
-  // }
-
+  // Using state to manage form data
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,9 +13,7 @@ function App() {
     favCar: "",
   });
 
-  // console.log(formData.email);
-  console.log(formData);
-
+  // Function to handle changes in form inputs
   function changeHandler(event) {
     const { name, value, checked, type } = event.target;
     setFormData((prevFormData) => {
@@ -40,9 +24,18 @@ function App() {
     });
   }
 
+  // Function to handle form submission
+  function submitHandler(event){
+    event.preventDefault();
+    // Print the final form data
+    console.log("Finally printing the entire form data.......");
+    console.log(formData);
+  }
+
   return (
     <div className="App">
-      <form>
+      <form onSubmit={submitHandler}>
+        {/* Input field for first name */}
         <input
           type="text"
           name="firstName"
@@ -53,6 +46,7 @@ function App() {
 
         <br></br>
         <br></br>
+        {/* Input field for last name */}
         <input
           type="text"
           name="lastName"
@@ -63,6 +57,7 @@ function App() {
 
         <br></br>
         <br></br>
+        {/* Input field for email */}
         <input
           type="email"
           name="email"
@@ -73,6 +68,7 @@ function App() {
 
         <br></br>
         <br></br>
+        {/* Textarea for comments */}
         <textarea
           placeholder="Enter Your Comments here..."
           onChange={changeHandler}
@@ -83,17 +79,18 @@ function App() {
         <br></br>
         <br></br>
 
+        {/* Checkbox for visibility */}
         <input
           type="checkbox"
           onChange={changeHandler}
           name="isVisible"
           checked={formData.isVisible}
         ></input>
-
-        <label htmlFor="isVisible">Am I Visble ?</label>
+        <label htmlFor="isVisible">Am I Visible ?</label>
 
         <br></br>
         <br></br>
+        {/* Radio buttons for mode selection */}
         <fieldset>
           <legend> Mode:</legend>
           <input
@@ -115,11 +112,12 @@ function App() {
             name="mode"
             value={"Offline Mode"}
             id="Offline-Mode"
-            checked={formData.mode === "Online-Mode"}
+            checked={formData.mode === "Offline Mode"}
           ></input>
           <label htmlFor="Offline-Mode">Offline Mode</label>
         </fieldset>
 
+        {/* Select field for favorite car */}
         <label htmlFor="favCar">Tell me your favourite car</label>
         <select
           name="favCar"
@@ -127,15 +125,18 @@ function App() {
           id="favCar"
           value={formData.favCar}
         >
-          <option value={"scorpio"}>scorpio</option>
-          <option value={"fortuner"}>fortuner</option>
-          <option value={"thar"}>thar</option>
-          <option value={"legender"}>legender</option>
-          <option value={"defender"}>defender</option>
+          <option value={"scorpio"}>Scorpio</option>
+          <option value={"fortuner"}>Fortuner</option>
+          <option value={"thar"}>Thar</option>
+          <option value={"legender"}>Legender</option>
+          <option value={"defender"}>Defender</option>
         </select>
 
         <br></br>
         <br></br>
+
+        {/* Submit button */}
+        <button>Submit</button>
       </form>
     </div>
   );
