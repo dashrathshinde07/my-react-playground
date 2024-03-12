@@ -11,9 +11,11 @@ function App() {
 
       <AddTodo />
 
-      <TodoItem />
+      <div className="items-container">
+        <TodoItem />
 
-      <TodoItem2 />
+        <TodoItem2 />
+      </div>
     </center>
   );
 }
